@@ -6,12 +6,12 @@ plugins {
 
 android {
     namespace = "ru.salfa.bankcardinfo"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "ru.salfa.bankcardinfo"
         minSdk = 26
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
