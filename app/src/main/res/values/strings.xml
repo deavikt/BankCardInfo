@@ -12,4 +12,6 @@
     <string name="city_title">Город</string>
 
     <string name="navigate_back_description">Назад</string>
+
+    <string name="empty_query_history_text">Здесь появится история поиска</string>
 </resources>
