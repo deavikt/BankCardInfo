@@ -11,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import ru.salfa.bankcardinfo.ui.components.BottomBar
 import ru.salfa.bankcardinfo.ui.components.TopBar
 import ru.salfa.bankcardinfo.ui.theme.BankCardInfoTheme
 
@@ -24,9 +25,11 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     topBar = {
                         TopBar(
-                            titleId = R.string.query_history_title,
-                            navigateBack = { }
+                            titleId = R.string.query_history_title
                         )
+                    },
+                    bottomBar = {
+                        BottomBar()
                     }
                 ) { innerPadding ->
                     Greeting(
