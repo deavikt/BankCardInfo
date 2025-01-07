@@ -11,20 +11,47 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import ru.salfa.bankcardinfo.ui.models.BottomBarItems
+import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import ru.salfa.bankcardinfo.R
+import ru.salfa.bankcardinfo.ui.models.BottomBarItem
+import ru.salfa.bankcardinfo.ui.navigation.BINInfoSearch
+import ru.salfa.bankcardinfo.ui.navigation.BINQueryHistory
 import ru.salfa.bankcardinfo.ui.theme.BankCardInfoTheme
 import ru.salfa.bankcardinfo.ui.theme.Purple
 
 @Composable
-fun BottomBar() {
+fun BottomBar(navController: NavHostController) {
+    val items = arrayOf(
+        BottomBarItem(
+            iconId = R.drawable.search_icon,
+            descriptionId = R.string.bin_info_search_title,
+            destination = BINInfoSearch
+        ),
+        BottomBarItem(
+            iconId = R.drawable.history_icon,
+            descriptionId = R.string.query_history_title,
+            destination = BINQueryHistory
+        )
+    )
+
     BottomAppBar {
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceAround
         ) {
-            BottomBarItems.entries.forEach { item ->
+            items.forEach { item ->
                 IconButton(
-                    onClick = { }
+                    onClick = {
+                        navController.navigate(item.destination) {
+                            popUpTo(navController.graph.findStartDestination().id) {
+                                saveState = true
+                            }
+                            launchSingleTop = true
+                            restoreState = true
+                        }
+                    }
                 ) {
                     Icon(
                         painter = painterResource(item.iconId),
@@ -41,6 +68,8 @@ fun BottomBar() {
 @Composable
 private fun BottomBarPreview() {
     BankCardInfoTheme {
-       BottomBar()
+        val navController = rememberNavController()
+
+        BottomBar(navController)
     }
 }

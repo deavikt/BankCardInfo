@@ -17,7 +17,7 @@ import ru.salfa.bankcardinfo.ui.theme.Hint
 import ru.salfa.bankcardinfo.ui.theme.Typography
 
 @Composable
-fun QueryHistoryScreen() {
+fun BINQueryHistoryScreen() {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -39,6 +39,6 @@ fun QueryHistoryScreen() {
 @Composable
 private fun QueryHistoryScreenPreview() {
     BankCardInfoTheme {
-        QueryHistoryScreen()
+        BINQueryHistoryScreen()
     }
 }
