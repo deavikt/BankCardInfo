@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">Bank Card Info</string>
 
+    <string name="bin_title">BIN</string>
     <string name="bin_info_search_title">Поиск</string>
     <string name="query_history_title">История запросов</string>
     <string name="country_title">Страна</string>
