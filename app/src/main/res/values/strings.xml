@@ -1,3 +1,18 @@
 <resources>
     <string name="app_name">Bank Card Info</string>
+
+    <string name="bin_title">BIN</string>
+    <string name="bin_info_search_title">Поиск</string>
+    <string name="query_history_title">История запросов</string>
+    <string name="country_title">Страна</string>
+    <string name="coordinates_title">Координаты</string>
+    <string name="payment_system_type_title">Платежная система</string>
+    <string name="bank_title">Банк</string>
+    <string name="url_title">Сайт</string>
+    <string name="phone_title">Телефон</string>
+    <string name="city_title">Город</string>
+
+    <string name="navigate_back_description">Назад</string>
+
+    <string name="empty_query_history_text">Здесь появится история поиска</string>
 </resources>
