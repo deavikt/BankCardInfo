@@ -5,6 +5,7 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
+import ru.salfa.bankcardinfo.data.di.dataModule
 import ru.salfa.bankcardinfo.ui.di.appModule
 
 class Application : Application() {
@@ -15,7 +16,7 @@ class Application : Application() {
         startKoin {
             androidLogger(Level.DEBUG)
             androidContext(this@Application)
-            modules(appModule)
+            modules(appModule, dataModule())
         }
     }
 }
