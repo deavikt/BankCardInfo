@@ -53,6 +53,9 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(libs.jetbrains.kotlinx.serialization.json)
     implementation(libs.koin.androidx.compose)
+    implementation(libs.retrofit)
+    implementation(libs.converter.gson)
+    implementation(libs.logging.interceptor)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
