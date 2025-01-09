@@ -27,7 +27,7 @@ import ru.salfa.bankcardinfo.ui.theme.Hint
 import ru.salfa.bankcardinfo.ui.theme.Typography
 
 @Composable
-fun BINInputField(
+fun BinInputField(
     modifier: Modifier,
     state: TextFieldState
 ) {
@@ -76,9 +76,9 @@ fun BINInputField(
 
 @Preview
 @Composable
-fun BINInputFieldPreview() {
+private fun BinInputFieldPreview() {
     BankCardInfoTheme {
-        BINInputField(
+        BinInputField(
             modifier = Modifier.fillMaxWidth(),
             state = TextFieldState()
         )

@@ -16,8 +16,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import ru.salfa.bankcardinfo.R
 import ru.salfa.bankcardinfo.ui.models.BottomBarItem
-import ru.salfa.bankcardinfo.ui.navigation.BINInfoSearch
-import ru.salfa.bankcardinfo.ui.navigation.BINQueryHistory
+import ru.salfa.bankcardinfo.ui.navigation.BankCardSearch
+import ru.salfa.bankcardinfo.ui.navigation.QueryHistory
 import ru.salfa.bankcardinfo.ui.theme.BankCardInfoTheme
 import ru.salfa.bankcardinfo.ui.theme.Purple
 
@@ -26,13 +26,13 @@ fun BottomBar(navController: NavHostController) {
     val items = arrayOf(
         BottomBarItem(
             iconId = R.drawable.search_icon,
-            descriptionId = R.string.bin_info_search_title,
-            destination = BINInfoSearch
+            descriptionId = R.string.bank_card_search_title,
+            destination = BankCardSearch
         ),
         BottomBarItem(
             iconId = R.drawable.history_icon,
             descriptionId = R.string.query_history_title,
-            destination = BINQueryHistory
+            destination = QueryHistory
         )
     )
 
