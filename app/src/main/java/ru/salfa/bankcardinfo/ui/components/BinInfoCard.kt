@@ -35,11 +35,23 @@ fun BinInfoCard(
     ) {
         BankCardProperty(R.string.country_title, bankCard.country.name)
         BankCardProperty(R.string.coordinates_title, "${bankCard.country.latitude} ${bankCard.country.longitude}")
-        BankCardProperty(R.string.payment_system_type_title, bankCard.scheme)
+        BankCardProperty(
+            R.string.payment_system_type_title,
+            bankCard.scheme.replaceFirstChar { char -> char.uppercase() }
+        )
         BankCardProperty(R.string.bank_title, bankCard.bank.name)
-        BankCardProperty(R.string.url_title, bankCard.bank.url)
-        BankCardProperty(R.string.phone_title, bankCard.bank.phone)
-        BankCardProperty(R.string.city_title, bankCard.bank.city)
+
+        bankCard.bank.url?.let { url ->
+            BankCardProperty(R.string.url_title, url)
+        }
+
+        bankCard.bank.phone?.let { phone ->
+            BankCardProperty(R.string.phone_title, phone)
+        }
+
+        bankCard.bank.city?.let { city ->
+            BankCardProperty(R.string.city_title, city)
+        }
     }
 }
 

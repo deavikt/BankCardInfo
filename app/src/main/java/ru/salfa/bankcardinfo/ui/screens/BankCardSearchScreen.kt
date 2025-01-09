@@ -59,8 +59,7 @@ fun BankCardSearchScreen(
         Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(top = 20.dp),
-            contentAlignment = Alignment.Center
+                .padding(top = 20.dp)
         ) {
             when (bankCardLoadingState) {
                 is BankCardLoadingState.Empty -> { }
@@ -87,7 +86,9 @@ fun BankCardSearchScreen(
                             )
                         }
                         is ResponseError.FailedInternetConnection -> {
-                            FailedInternetConnectionScreen()
+                            FailedInternetConnectionScreen(
+                                repeatDataLoading = { viewModel.getBankCardFlow() }
+                            )
                         }
                     }
                 }

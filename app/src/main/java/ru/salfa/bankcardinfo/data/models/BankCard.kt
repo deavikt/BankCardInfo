@@ -7,9 +7,9 @@ data class BankCard(
 ) {
     data class Bank(
         val name: String,
-        val url: String,
-        val phone: String,
-        val city: String
+        val url: String?,
+        val phone: String?,
+        val city: String?
     )
 
     data class Country(

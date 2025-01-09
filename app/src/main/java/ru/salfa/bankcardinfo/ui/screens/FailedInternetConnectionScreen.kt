@@ -21,7 +21,9 @@ import ru.salfa.bankcardinfo.ui.theme.BankCardInfoTheme
 import ru.salfa.bankcardinfo.ui.theme.Typography
 
 @Composable
-fun FailedInternetConnectionScreen() {
+fun FailedInternetConnectionScreen(
+    repeatDataLoading: () -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -46,7 +48,7 @@ fun FailedInternetConnectionScreen() {
         )
 
         AppButton(
-            onClick = { },
+            onClick = repeatDataLoading,
             modifier = Modifier.padding(top = 36.dp),
             textId = R.string.repeat_button_title
         )
@@ -57,6 +59,8 @@ fun FailedInternetConnectionScreen() {
 @Composable
 private fun FailedInternetConnectionScreenPreview() {
     BankCardInfoTheme {
-        FailedInternetConnectionScreen()
+        FailedInternetConnectionScreen(
+            repeatDataLoading = { }
+        )
     }
 }
