@@ -35,10 +35,12 @@ fun BinInfoCard(
     ) {
         BankCardProperty(R.string.country_title, bankCard.country.name)
         BankCardProperty(R.string.coordinates_title, "${bankCard.country.latitude} ${bankCard.country.longitude}")
+
         BankCardProperty(
             R.string.payment_system_type_title,
             bankCard.scheme.replaceFirstChar { char -> char.uppercase() }
         )
+
         BankCardProperty(R.string.bank_title, bankCard.bank.name)
 
         bankCard.bank.url?.let { url ->
@@ -90,6 +92,9 @@ private fun BinInfoCardPreview() {
         BinInfoCard(
             modifier = Modifier.fillMaxWidth(),
             bankCard = BankCard(
+                number = BankCard.Number(
+                    length = 16
+                ),
                 scheme = "visa",
                 country = BankCard.Country(
                     name = "Denmark",

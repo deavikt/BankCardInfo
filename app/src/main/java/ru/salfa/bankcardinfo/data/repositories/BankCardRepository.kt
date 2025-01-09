@@ -14,12 +14,10 @@ class BankCardRepository(private val bankCardApi: BankCardApi) {
             val response = bankCardApi.getBankCard(bin)
             val responseBody = response.body()
 
-            if (response.isSuccessful && responseBody != null) {
+            if (response.isSuccessful && responseBody != null && responseBody.number != null) {
                 emit(ResponseResult.Success(responseBody))
             } else {
-                if (response.code() == ResponseError.NotFound().code) {
-                    emit(ResponseResult.Error(ResponseError.NotFound()))
-                }
+                emit(ResponseResult.Error(ResponseError.NotFound))
             }
         } catch (exception: Throwable) {
             emit(ResponseResult.Error(ResponseError.FailedInternetConnection))

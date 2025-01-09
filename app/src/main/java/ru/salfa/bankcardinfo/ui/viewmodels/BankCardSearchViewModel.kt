@@ -9,12 +9,14 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import ru.salfa.bankcardinfo.data.models.ResponseResult
 import ru.salfa.bankcardinfo.data.repositories.BankCardRepository
+import ru.salfa.bankcardinfo.ui.models.BIN
 import ru.salfa.bankcardinfo.ui.models.BankCardLoadingState
 
 class BankCardSearchViewModel(
     private val bankCardRepository: BankCardRepository
 ) : ViewModel() {
     private val binInputFieldState: TextFieldState = TextFieldState()
+    private val searchButtonEnabledState: MutableStateFlow<Boolean> = MutableStateFlow(false)
     private val bankCardLoadingStateFlow: MutableStateFlow<BankCardLoadingState> = MutableStateFlow(BankCardLoadingState.Empty)
 
     fun getBinInputFieldState(): TextFieldState = binInputFieldState
@@ -38,6 +40,12 @@ class BankCardSearchViewModel(
                         }
                     }
                 }
+        }
+    }
+
+    fun getSearchButtonEnabledStateFlow(): StateFlow<Boolean> {
+        return searchButtonEnabledState.apply {
+            update { binInputFieldState.text.length >= BIN.MIN_LENGTH }
         }
     }
 

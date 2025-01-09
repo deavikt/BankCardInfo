@@ -30,6 +30,7 @@ import ru.salfa.bankcardinfo.ui.viewmodels.BankCardSearchViewModel
 fun BankCardSearchScreen(
     viewModel: BankCardSearchViewModel = koinViewModel()
 ) {
+    val searchButtonEnabledState by viewModel.getSearchButtonEnabledStateFlow().collectAsStateWithLifecycle()
     val bankCardLoadingState by viewModel.getBankCardLoadingStateFlow().collectAsStateWithLifecycle()
 
     Column(
@@ -52,6 +53,7 @@ fun BankCardSearchScreen(
             AppButton(
                 onClick = { viewModel.getBankCardFlow() },
                 modifier = Modifier,
+                enabled = searchButtonEnabledState,
                 textId = R.string.search_button_title
             )
         }
@@ -79,13 +81,13 @@ fun BankCardSearchScreen(
 
                 is BankCardLoadingState.Error -> {
                     when ((bankCardLoadingState as BankCardLoadingState.Error).error) {
-                        is ResponseError.NotFound -> {
+                        ResponseError.NotFound -> {
                             DataLoadingStateText(
                                 stateTextId = R.string.bank_card_not_found_error_text,
                                 modifier = Modifier.align(Alignment.Center)
                             )
                         }
-                        is ResponseError.FailedInternetConnection -> {
+                        ResponseError.FailedInternetConnection -> {
                             FailedInternetConnectionScreen(
                                 repeatDataLoading = { viewModel.getBankCardFlow() }
                             )

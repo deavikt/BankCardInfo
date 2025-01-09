@@ -22,16 +22,19 @@ import ru.salfa.bankcardinfo.ui.theme.BankCardInfoTheme
 import ru.salfa.bankcardinfo.ui.theme.Purple
 
 @Composable
-fun BottomBar(navController: NavHostController) {
+fun BottomBar(
+    navController: NavHostController,
+    setTopBarTitleId: (topBarTitleId: Int) -> Unit
+) {
     val items = arrayOf(
         BottomBarItem(
             iconId = R.drawable.search_icon,
-            descriptionId = R.string.bank_card_search_title,
+            topBarTitleId = R.string.bank_card_search_title,
             destination = BankCardSearch
         ),
         BottomBarItem(
             iconId = R.drawable.history_icon,
-            descriptionId = R.string.query_history_title,
+            topBarTitleId = R.string.query_history_title,
             destination = QueryHistory
         )
     )
@@ -51,11 +54,13 @@ fun BottomBar(navController: NavHostController) {
                             launchSingleTop = true
                             restoreState = true
                         }
+
+                        setTopBarTitleId(item.topBarTitleId)
                     }
                 ) {
                     Icon(
                         painter = painterResource(item.iconId),
-                        contentDescription = stringResource(item.descriptionId),
+                        contentDescription = stringResource(item.topBarTitleId),
                         tint = Purple
                     )
                 }
@@ -68,8 +73,9 @@ fun BottomBar(navController: NavHostController) {
 @Composable
 private fun BottomBarPreview() {
     BankCardInfoTheme {
-        val navController = rememberNavController()
-
-        BottomBar(navController)
+        BottomBar(
+            navController = rememberNavController(),
+            setTopBarTitleId = { }
+        )
     }
 }

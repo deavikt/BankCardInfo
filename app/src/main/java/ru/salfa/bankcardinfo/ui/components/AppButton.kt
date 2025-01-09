@@ -4,6 +4,7 @@ import androidx.annotation.StringRes
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -12,18 +13,30 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ru.salfa.bankcardinfo.R
 import ru.salfa.bankcardinfo.ui.theme.BankCardInfoTheme
+import ru.salfa.bankcardinfo.ui.theme.DisabledContainer
+import ru.salfa.bankcardinfo.ui.theme.DisabledContent
+import ru.salfa.bankcardinfo.ui.theme.Purple
 import ru.salfa.bankcardinfo.ui.theme.Typography
+import ru.salfa.bankcardinfo.ui.theme.White
 
 @Composable
 fun AppButton(
     onClick: () -> Unit,
     modifier: Modifier,
+    enabled: Boolean = true,
     @StringRes textId: Int
 ) {
     Button(
         onClick = onClick,
         modifier = modifier,
-        shape = RoundedCornerShape(16.dp)
+        enabled = enabled,
+        shape = RoundedCornerShape(16.dp),
+        colors = ButtonColors(
+            containerColor = Purple,
+            contentColor = White,
+            disabledContainerColor = DisabledContainer,
+            disabledContentColor = DisabledContent
+        )
     ) {
         Text(
             text = stringResource(textId),
@@ -46,6 +59,7 @@ private fun AppButtonPreview() {
         AppButton(
             onClick = { },
             modifier = Modifier,
+            enabled = false,
             textId = R.string.search_button_title
         )
     }
