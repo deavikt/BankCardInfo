@@ -5,8 +5,8 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import ru.salfa.bankcardinfo.ui.screens.BINInfoSearchScreen
-import ru.salfa.bankcardinfo.ui.screens.BINQueryHistoryScreen
+import ru.salfa.bankcardinfo.ui.screens.BankCardSearchScreen
+import ru.salfa.bankcardinfo.ui.screens.QueryHistoryScreen
 
 @Composable
 fun NavigationGraph(
@@ -15,15 +15,15 @@ fun NavigationGraph(
 ) {
     NavHost(
         navController = navController,
-        startDestination = BINInfoSearch,
+        startDestination = BankCardSearch,
         modifier = modifier
     ) {
-        composable<BINInfoSearch> {
-            BINInfoSearchScreen()
+        composable<BankCardSearch> {
+            BankCardSearchScreen()
         }
 
-        composable<BINQueryHistory> {
-            BINQueryHistoryScreen()
+        composable<QueryHistory> {
+            QueryHistoryScreen()
         }
     }
 }

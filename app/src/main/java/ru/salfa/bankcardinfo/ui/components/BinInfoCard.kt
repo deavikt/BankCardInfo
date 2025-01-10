@@ -14,12 +14,16 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ru.salfa.bankcardinfo.R
+import ru.salfa.bankcardinfo.data.models.BankCard
 import ru.salfa.bankcardinfo.ui.theme.BankCardInfoTheme
 import ru.salfa.bankcardinfo.ui.theme.DisabledContainer
 import ru.salfa.bankcardinfo.ui.theme.Typography
 
 @Composable
-fun BINInfoCard(modifier: Modifier) {
+fun BinInfoCard(
+    modifier: Modifier,
+    bankCard: BankCard
+) {
     Column(
         modifier = modifier
             .background(
@@ -29,13 +33,30 @@ fun BINInfoCard(modifier: Modifier) {
             .padding(20.dp),
         verticalArrangement = Arrangement.spacedBy(4.dp)
     ) {
-        BankCardProperty(R.string.country_title, "Германия")
-        BankCardProperty(R.string.coordinates_title, "56 10")
-        BankCardProperty(R.string.payment_system_type_title, "visa")
-        BankCardProperty(R.string.bank_title, "Jyske Bank")
-        BankCardProperty(R.string.url_title, "www.jyskebank.dk")
-        BankCardProperty(R.string.phone_title, "+4589893300")
-        BankCardProperty(R.string.city_title, "Hjorring")
+        BankCardProperty(R.string.country_title, bankCard.country.name)
+
+        BankCardProperty(
+            propertyNameId = R.string.coordinates_title,
+            propertyText = "${bankCard.country.latitude}, ${bankCard.country.longitude}")
+
+        BankCardProperty(
+            propertyNameId = R.string.payment_system_type_title,
+            propertyText = bankCard.scheme.replaceFirstChar { char -> char.uppercase() }
+        )
+
+        BankCardProperty(R.string.bank_title, bankCard.bank.name)
+
+        bankCard.bank.url?.let { url ->
+            BankCardProperty(R.string.url_title, url)
+        }
+
+        bankCard.bank.phone?.let { phone ->
+            BankCardProperty(R.string.phone_title, phone)
+        }
+
+        bankCard.bank.city?.let { city ->
+            BankCardProperty(R.string.city_title, city)
+        }
     }
 }
 
@@ -69,8 +90,27 @@ private fun BankCardPropertyText(propertyText: String) {
 
 @Preview
 @Composable
-private fun BINInfoCardPreview() {
+private fun BinInfoCardPreview() {
     BankCardInfoTheme {
-        BINInfoCard(Modifier.fillMaxWidth())
+        BinInfoCard(
+            modifier = Modifier.fillMaxWidth(),
+            bankCard = BankCard(
+                number = BankCard.Number(
+                    length = 16
+                ),
+                scheme = "visa",
+                country = BankCard.Country(
+                    name = "Denmark",
+                    latitude = 56,
+                    longitude = 10
+                ),
+                bank = BankCard.Bank(
+                    name = "Jyske Bank",
+                    url = "www.jyskebank.dk",
+                    phone = "+4589893300",
+                    city = "Hjorring"
+                )
+            )
+        )
     }
 }

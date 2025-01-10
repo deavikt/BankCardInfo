@@ -29,7 +29,7 @@ fun TopBar(@StringRes titleId: Int) {
 private fun TopBarPreview() {
     BankCardInfoTheme {
         TopBar(
-            titleId = R.string.bin_info_search_title
+            titleId = R.string.bank_card_search_title
         )
     }
 }

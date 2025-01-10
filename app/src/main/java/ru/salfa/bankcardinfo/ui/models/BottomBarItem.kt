@@ -5,6 +5,6 @@ import androidx.annotation.StringRes
 
 data class BottomBarItem <T : Any> (
     @DrawableRes val iconId: Int,
-    @StringRes val descriptionId: Int,
+    @StringRes val topBarTitleId: Int,
     val destination: T
 )

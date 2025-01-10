@@ -21,13 +21,14 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.text.isDigitsOnly
+import ru.salfa.bankcardinfo.ui.models.BIN
 import ru.salfa.bankcardinfo.ui.theme.BankCardInfoTheme
 import ru.salfa.bankcardinfo.ui.theme.DisabledContainer
 import ru.salfa.bankcardinfo.ui.theme.Hint
 import ru.salfa.bankcardinfo.ui.theme.Typography
 
 @Composable
-fun BINInputField(
+fun BinInputField(
     modifier: Modifier,
     state: TextFieldState
 ) {
@@ -47,16 +48,19 @@ fun BINInputField(
     ) {
         BasicTextField(
             state = state,
+            modifier = Modifier.fillMaxWidth(),
             inputTransformation = InputTransformation
-                .maxLength(8)
+                .maxLength(BIN.MAX_LENGTH)
                 .then {
                     if (!asCharSequence().isDigitsOnly()) {
                         revertAllChanges()
                     }
                 },
             outputTransformation = {
-                if (length > 4) {
-                    insert(4, " ")
+                BIN.MASK.forEachIndexed { index, char ->
+                    if (length > index && char != '0') {
+                        insert(index, char.toString())
+                    }
                 }
             },
             textStyle = Typography.bodyMedium.copy(textAlign = TextAlign.End),
@@ -67,7 +71,7 @@ fun BINInputField(
 
         if (state.text.isEmpty()) {
             Text(
-                text = "0000 0000",
+                text = BIN.MASK,
                 style = Typography.bodyMedium.copy(color = Hint)
             )
         }
@@ -76,9 +80,9 @@ fun BINInputField(
 
 @Preview
 @Composable
-fun BINInputFieldPreview() {
+private fun BinInputFieldPreview() {
     BankCardInfoTheme {
-        BINInputField(
+        BinInputField(
             modifier = Modifier.fillMaxWidth(),
             state = TextFieldState()
         )

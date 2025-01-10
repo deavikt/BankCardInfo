@@ -6,6 +6,10 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import ru.salfa.bankcardinfo.ui.components.BottomBar
@@ -14,23 +18,24 @@ import ru.salfa.bankcardinfo.ui.navigation.NavigationGraph
 import ru.salfa.bankcardinfo.ui.theme.BankCardInfoTheme
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         setContent {
             val navController = rememberNavController()
+            var titleId by rememberSaveable { mutableIntStateOf(R.string.bank_card_search_title) }
 
             BankCardInfoTheme {
                 Scaffold(
                     modifier = Modifier.fillMaxSize(),
                     topBar = {
-                        TopBar(
-                            titleId = R.string.query_history_title
-                        )
+                        TopBar(titleId = titleId)
                     },
                     bottomBar = {
                         BottomBar(
-                            navController = navController
+                            navController = navController,
+                            setTopBarTitleId = { topBarTitleId -> titleId = topBarTitleId }
                         )
                     }
                 ) { innerPadding ->
