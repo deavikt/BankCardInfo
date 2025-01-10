@@ -18,6 +18,7 @@ import ru.salfa.bankcardinfo.ui.navigation.NavigationGraph
 import ru.salfa.bankcardinfo.ui.theme.BankCardInfoTheme
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

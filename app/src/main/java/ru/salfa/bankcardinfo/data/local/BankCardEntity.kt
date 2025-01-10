@@ -6,8 +6,7 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "bank card")
 data class BankCardEntity(
-    @PrimaryKey val id: Int,
-    @ColumnInfo val bin: String,
+    @PrimaryKey val bin: String,
     @ColumnInfo val paymentSystem: String,
     @ColumnInfo val countryName: String,
     @ColumnInfo val countryLatitude: Int,

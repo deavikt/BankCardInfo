@@ -32,6 +32,11 @@ class BankCardSearchViewModel(
                             bankCardLoadingStateFlow.update {
                                 BankCardLoadingState.Success(response.data)
                             }
+
+                            bankCardRepository.insertBankCardIntoDB(
+                                bankCard = response.data,
+                                bin = binInputFieldState.text.toString()
+                            )
                         }
                         is ResponseResult.Error -> {
                             bankCardLoadingStateFlow.update {
