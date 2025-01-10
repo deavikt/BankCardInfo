@@ -3,9 +3,9 @@ package ru.salfa.bankcardinfo.data.mappers
 import ru.salfa.bankcardinfo.data.local.BankCardEntity
 import ru.salfa.bankcardinfo.data.models.BankCard
 
-class BankCardMapper: Mapper<BankCard, BankCardEntity> {
+class FromBankCardToBankCardEntityMapper {
 
-    override fun map(bankCard: BankCard, bin: String): BankCardEntity {
+    fun map(bankCard: BankCard, bin: String): BankCardEntity {
         return with(bankCard) {
             BankCardEntity(
                 bin = bin,

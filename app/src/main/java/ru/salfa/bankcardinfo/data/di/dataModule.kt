@@ -6,7 +6,7 @@ import org.koin.core.module.Module
 import org.koin.dsl.module
 import ru.salfa.bankcardinfo.data.local.BankCardDao
 import ru.salfa.bankcardinfo.data.local.BankCardDatabase
-import ru.salfa.bankcardinfo.data.mappers.BankCardMapper
+import ru.salfa.bankcardinfo.data.mappers.FromBankCardToBankCardEntityMapper
 import ru.salfa.bankcardinfo.data.remote.BankCardApi
 import ru.salfa.bankcardinfo.data.remote.RetrofitService
 import ru.salfa.bankcardinfo.data.repositories.BankCardRepository
@@ -23,6 +23,6 @@ fun dataModule(appContext: Context): Module = module {
 
     single<BankCardApi> { bankCardApi }
     single<BankCardDao> { database.bankCardDao() }
-    single<BankCardMapper> { BankCardMapper() }
+    single<FromBankCardToBankCardEntityMapper> { FromBankCardToBankCardEntityMapper() }
     single<BankCardRepository> { BankCardRepository(get(), get(), get()) }
 }
