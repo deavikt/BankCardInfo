@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.flow
 import ru.salfa.bankcardinfo.data.models.BankCard
 import ru.salfa.bankcardinfo.data.models.ResponseError
 import ru.salfa.bankcardinfo.data.models.ResponseResult
-import ru.salfa.bankcardinfo.data.network.BankCardApi
+import ru.salfa.bankcardinfo.data.remote.BankCardApi
 
 class BankCardRepository(private val bankCardApi: BankCardApi) {
 

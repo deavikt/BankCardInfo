@@ -14,9 +14,11 @@ class Application : Application() {
         super.onCreate()
 
         startKoin {
+            val appContext = this@Application
+
             androidLogger(Level.DEBUG)
-            androidContext(this@Application)
-            modules(presentationModule, dataModule())
+            androidContext(appContext)
+            modules(presentationModule, dataModule(appContext))
         }
     }
 }

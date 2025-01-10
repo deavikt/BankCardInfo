@@ -1,4 +1,4 @@
-package ru.salfa.bankcardinfo.data.network
+package ru.salfa.bankcardinfo.data.remote
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor

@@ -1,4 +1,4 @@
-package ru.salfa.bankcardinfo.data.network
+package ru.salfa.bankcardinfo.data.remote
 
 import retrofit2.Response
 import retrofit2.http.GET
