@@ -34,11 +34,14 @@ fun BinInfoCard(
         verticalArrangement = Arrangement.spacedBy(4.dp)
     ) {
         BankCardProperty(R.string.country_title, bankCard.country.name)
-        BankCardProperty(R.string.coordinates_title, "${bankCard.country.latitude} ${bankCard.country.longitude}")
 
         BankCardProperty(
-            R.string.payment_system_type_title,
-            bankCard.scheme.replaceFirstChar { char -> char.uppercase() }
+            propertyNameId = R.string.coordinates_title,
+            propertyText = "${bankCard.country.latitude}, ${bankCard.country.longitude}")
+
+        BankCardProperty(
+            propertyNameId = R.string.payment_system_type_title,
+            propertyText = bankCard.scheme.replaceFirstChar { char -> char.uppercase() }
         )
 
         BankCardProperty(R.string.bank_title, bankCard.bank.name)

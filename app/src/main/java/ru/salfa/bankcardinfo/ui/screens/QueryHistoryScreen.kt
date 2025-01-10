@@ -16,7 +16,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.koin.androidx.compose.koinViewModel
 import ru.salfa.bankcardinfo.R
 import ru.salfa.bankcardinfo.data.local.BankCardEntity
-import ru.salfa.bankcardinfo.ui.components.BINQueryHistoryCard
+import ru.salfa.bankcardinfo.ui.components.BankCard
 import ru.salfa.bankcardinfo.ui.components.DataLoadingStateText
 import ru.salfa.bankcardinfo.ui.models.BankCardsLoadingState
 import ru.salfa.bankcardinfo.ui.theme.BankCardInfoTheme
@@ -58,11 +58,11 @@ private fun BankCardList(bankCards: List<BankCardEntity>) {
         modifier = Modifier.fillMaxSize()
     ) {
         items(bankCards.size) { index ->
-            BINQueryHistoryCard(
+            BankCard(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(bottom = 10.dp),
-                bankCard = bankCards[index]
+                bankCard = bankCards.reversed()[index]
             )
         }
     }
