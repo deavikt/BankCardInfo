@@ -12,10 +12,10 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
-import ru.salfa.bankcardinfo.ui.components.BottomBar
-import ru.salfa.bankcardinfo.ui.components.TopBar
-import ru.salfa.bankcardinfo.ui.navigation.NavigationGraph
-import ru.salfa.bankcardinfo.ui.theme.BankCardInfoTheme
+import ru.salfa.presentation.components.BottomBar
+import ru.salfa.presentation.components.TopBar
+import ru.salfa.presentation.navigation.NavigationGraph
+import ru.salfa.presentation.theme.BankCardInfoTheme
 
 class MainActivity : ComponentActivity() {
 

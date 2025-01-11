@@ -6,7 +6,7 @@ import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
 import ru.salfa.data.di.dataModule
-import ru.salfa.bankcardinfo.ui.di.presentationModule
+import ru.salfa.presentation.di.presentationModule
 
 class Application : Application() {
 

@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Bank Card Info</string>
+
+    <string name="bin_title">BIN</string>
+    <string name="bank_card_search_title">Поиск</string>
+    <string name="query_history_title">История запросов</string>
+    <string name="country_title">Страна</string>
+    <string name="coordinates_title">Координаты</string>
+    <string name="payment_system_type_title">Платежная система</string>
+    <string name="bank_title">Банк</string>
+    <string name="url_title">Сайт</string>
+    <string name="phone_title">Телефон</string>
+    <string name="city_title">Город</string>
+
+    <string name="failed_internet_connection_icon_description">Ошибка загрузки данных</string>
+
+    <string name="repeat_button_title">Повторить</string>
+    <string name="search_button_title">Найти</string>
+
+    <string name="bank_card_not_found_error_text">Банковская карта с таким идентификатором не найдена</string>
+    <string name="failed_internet_connection_error_text">Произошла ошибка при загрузке данных, проверьте подключение к сети</string>
+
+    <string name="empty_query_history_text">Здесь появится история поиска банковских карт</string>
+</resources>
