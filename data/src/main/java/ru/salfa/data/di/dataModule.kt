@@ -1,15 +1,15 @@
-package ru.salfa.bankcardinfo.data.di
+package ru.salfa.data.di
 
 import android.content.Context
 import androidx.room.Room
 import org.koin.core.module.Module
 import org.koin.dsl.module
-import ru.salfa.bankcardinfo.data.local.BankCardDao
-import ru.salfa.bankcardinfo.data.local.BankCardDatabase
-import ru.salfa.bankcardinfo.data.mappers.FromBankCardToBankCardEntityMapper
-import ru.salfa.bankcardinfo.data.remote.BankCardApi
-import ru.salfa.bankcardinfo.data.remote.RetrofitService
-import ru.salfa.bankcardinfo.data.repositories.BankCardRepository
+import ru.salfa.data.local.BankCardDao
+import ru.salfa.data.local.BankCardDatabase
+import ru.salfa.data.mappers.FromBankCardToBankCardEntityMapper
+import ru.salfa.data.remote.BankCardApi
+import ru.salfa.data.remote.RetrofitService
+import ru.salfa.data.repositories.BankCardRepository
 
 fun dataModule(appContext: Context): Module = module {
 

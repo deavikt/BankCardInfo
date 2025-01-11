@@ -1,9 +1,9 @@
-package ru.salfa.bankcardinfo.data.mappers
+package ru.salfa.data.mappers
 
-import ru.salfa.bankcardinfo.data.local.BankCardEntity
-import ru.salfa.bankcardinfo.data.models.BankCard
+import ru.salfa.data.local.BankCardEntity
+import ru.salfa.data.models.BankCard
 
-class FromBankCardToBankCardEntityMapper {
+internal class FromBankCardToBankCardEntityMapper {
 
     fun map(bankCard: BankCard, bin: String): BankCardEntity {
         return with(bankCard) {

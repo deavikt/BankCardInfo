@@ -6,7 +6,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import ru.salfa.bankcardinfo.data.repositories.BankCardRepository
+import ru.salfa.data.repositories.BankCardRepository
 import ru.salfa.bankcardinfo.ui.models.BankCardsLoadingState
 
 class QueryHistoryViewModel(

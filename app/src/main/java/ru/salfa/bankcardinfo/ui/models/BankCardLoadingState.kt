@@ -1,7 +1,7 @@
 package ru.salfa.bankcardinfo.ui.models
 
-import ru.salfa.bankcardinfo.data.models.BankCard
-import ru.salfa.bankcardinfo.data.models.ResponseError
+import ru.salfa.data.models.BankCard
+import ru.salfa.data.models.ResponseError
 
 sealed class BankCardLoadingState {
     data object Empty : BankCardLoadingState()

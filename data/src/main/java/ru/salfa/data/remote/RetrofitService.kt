@@ -1,11 +1,11 @@
-package ru.salfa.bankcardinfo.data.remote
+package ru.salfa.data.remote
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class RetrofitService {
+internal class RetrofitService {
 
     private val baseURL: String = "https://lookup.binlist.net/"
 

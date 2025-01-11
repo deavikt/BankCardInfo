@@ -1,6 +1,6 @@
 package ru.salfa.bankcardinfo.ui.models
 
-import ru.salfa.bankcardinfo.data.local.BankCardEntity
+import ru.salfa.data.local.BankCardEntity
 
 sealed class BankCardsLoadingState {
     data object Empty : BankCardsLoadingState()

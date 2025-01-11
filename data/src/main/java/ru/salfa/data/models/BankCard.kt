@@ -1,6 +1,6 @@
-package ru.salfa.bankcardinfo.data.models
+package ru.salfa.data.models
 
-data class BankCard(
+internal data class BankCard(
     val number: Number?,
     val scheme: String,
     val country: Country,

@@ -1,4 +1,4 @@
-package ru.salfa.bankcardinfo.data.local
+package ru.salfa.data.local
 
 import androidx.room.Dao
 import androidx.room.Insert
@@ -7,7 +7,7 @@ import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
 
 @Dao
-interface BankCardDao {
+internal interface BankCardDao {
 
     @Query("SELECT * FROM `bank card`")
     fun getBankCards(): Flow<List<BankCardEntity>>

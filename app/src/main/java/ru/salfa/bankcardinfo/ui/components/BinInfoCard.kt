@@ -14,7 +14,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ru.salfa.bankcardinfo.R
-import ru.salfa.bankcardinfo.data.models.BankCard
+import ru.salfa.data.models.BankCard
 import ru.salfa.bankcardinfo.ui.theme.BankCardInfoTheme
 import ru.salfa.bankcardinfo.ui.theme.DisabledContainer
 import ru.salfa.bankcardinfo.ui.theme.Typography

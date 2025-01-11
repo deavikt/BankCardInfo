@@ -1,16 +1,16 @@
-package ru.salfa.bankcardinfo.data.repositories
+package ru.salfa.data.repositories
 
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
-import ru.salfa.bankcardinfo.data.local.BankCardDao
-import ru.salfa.bankcardinfo.data.local.BankCardEntity
-import ru.salfa.bankcardinfo.data.mappers.FromBankCardToBankCardEntityMapper
-import ru.salfa.bankcardinfo.data.models.BankCard
-import ru.salfa.bankcardinfo.data.models.ResponseError
-import ru.salfa.bankcardinfo.data.models.ResponseResult
-import ru.salfa.bankcardinfo.data.remote.BankCardApi
+import ru.salfa.data.local.BankCardDao
+import ru.salfa.data.local.BankCardEntity
+import ru.salfa.data.mappers.FromBankCardToBankCardEntityMapper
+import ru.salfa.data.models.BankCard
+import ru.salfa.data.models.ResponseError
+import ru.salfa.data.models.ResponseResult
+import ru.salfa.data.remote.BankCardApi
 
-class BankCardRepository(
+internal class BankCardRepository(
     private val bankCardApi: BankCardApi,
     private val bankCardDao: BankCardDao,
     private val fromBankCardToBankCardEntityMapper: FromBankCardToBankCardEntityMapper

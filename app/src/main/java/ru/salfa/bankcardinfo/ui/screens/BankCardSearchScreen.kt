@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.koin.androidx.compose.koinViewModel
 import ru.salfa.bankcardinfo.R
-import ru.salfa.bankcardinfo.data.models.ResponseError
+import ru.salfa.data.models.ResponseError
 import ru.salfa.bankcardinfo.ui.components.AppButton
 import ru.salfa.bankcardinfo.ui.components.BinInfoCard
 import ru.salfa.bankcardinfo.ui.components.BinInputField
