@@ -3,25 +3,33 @@ package ru.salfa.data.repositories
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import ru.salfa.data.local.BankCardDao
-import ru.salfa.data.local.BankCardEntity
+import ru.salfa.data.mappers.FromBankCardDtoToBankCardMapper
+import ru.salfa.data.mappers.FromBankCardEntityToBankCardMapper
 import ru.salfa.data.mappers.FromBankCardToBankCardEntityMapper
-import ru.salfa.data.models.BankCard
-import ru.salfa.data.models.ResponseError
-import ru.salfa.data.models.ResponseResult
+import ru.salfa.domain.models.BankCard
+import ru.salfa.domain.models.ResponseError
+import ru.salfa.domain.models.ResponseResult
 import ru.salfa.data.remote.BankCardApi
+import ru.salfa.domain.repositories.BankCardRepository
 
-internal class BankCardRepository(
+internal class BankCardRepositoryImpl(
     private val bankCardApi: BankCardApi,
     private val bankCardDao: BankCardDao,
+    private val fromBankCardDtoToBankCardMapper: FromBankCardDtoToBankCardMapper,
+    private val fromBankCardEntityToBankCardMapper: FromBankCardEntityToBankCardMapper,
     private val fromBankCardToBankCardEntityMapper: FromBankCardToBankCardEntityMapper
-) {
-    fun getBankCardFlow(bin: String): Flow<ResponseResult<BankCard>> = flow {
+) : BankCardRepository {
+    override fun getBankCardFlow(bin: String): Flow<ResponseResult<BankCard>> = flow {
         try {
             val response = bankCardApi.getBankCard(bin)
             val responseBody = response.body()
 
             if (response.isSuccessful && responseBody != null && responseBody.number != null) {
-                emit(ResponseResult.Success(responseBody))
+                emit(
+                    ResponseResult.Success(
+                        fromBankCardDtoToBankCardMapper.map(responseBody)
+                    )
+                )
             } else {
                 emit(ResponseResult.Error(ResponseError.NotFound))
             }
@@ -30,11 +38,20 @@ internal class BankCardRepository(
         }
     }
 
-    fun getBankCardsFlow(): Flow<List<BankCardEntity>> = bankCardDao.getBankCards()
+    override fun getBankCardsFlow(): Flow<List<BankCard>> = flow {
+        bankCardDao.getBankCards()
+            .collect { bankCards ->
+                emit(
+                    bankCards.map { bankCard ->
+                        fromBankCardEntityToBankCardMapper.map(bankCard)
+                    }
+                )
+            }
+    }
 
-    suspend fun insertBankCardIntoDB(bankCard: BankCard, bin: String) {
+    override suspend fun insertBankCardIntoDB(bankCard: BankCard) {
         bankCardDao.insertBankCard(
-            fromBankCardToBankCardEntityMapper.map(bankCard, bin)
+            fromBankCardToBankCardEntityMapper.map(bankCard)
         )
     }
 }

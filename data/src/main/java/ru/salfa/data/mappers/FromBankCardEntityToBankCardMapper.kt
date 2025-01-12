@@ -3,11 +3,11 @@ package ru.salfa.data.mappers
 import ru.salfa.data.local.BankCardEntity
 import ru.salfa.domain.models.BankCard
 
-internal class FromBankCardToBankCardEntityMapper {
+internal class FromBankCardEntityToBankCardMapper {
 
-    fun map(bankCard: BankCard): BankCardEntity {
+    fun map(bankCard: BankCardEntity): BankCard {
         return with(bankCard) {
-            BankCardEntity(
+            BankCard(
                 bin = bin,
                 paymentSystem = paymentSystem,
                 countryName = countryName,

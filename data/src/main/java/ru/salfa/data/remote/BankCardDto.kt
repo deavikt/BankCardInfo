@@ -1,6 +1,6 @@
-package ru.salfa.data.models
+package ru.salfa.data.remote
 
-internal data class BankCard(
+internal data class BankCardDto(
     val number: Number?,
     val scheme: String,
     val country: Country,
