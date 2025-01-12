@@ -6,11 +6,11 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import ru.salfa.data.repositories.BankCardRepository
+import ru.salfa.domain.usecases.interfaces.GetBankCardsUseCase
 import ru.salfa.presentation.models.BankCardsLoadingState
 
 internal class QueryHistoryViewModel(
-    private val bankCardRepository: BankCardRepository
+    private val getBankCardsUseCase: GetBankCardsUseCase
 ) : ViewModel() {
     private val bankCardsLoadingStateFlow: MutableStateFlow<BankCardsLoadingState> = MutableStateFlow(BankCardsLoadingState.Empty)
 
@@ -22,7 +22,7 @@ internal class QueryHistoryViewModel(
 
     private fun getBankCardsFlow() {
         viewModelScope.launch {
-            bankCardRepository.getBankCardsFlow().collect { bankCards ->
+            getBankCardsUseCase().collect { bankCards ->
                 if (bankCards.isEmpty()) {
                     bankCardsLoadingStateFlow.update {
                         BankCardsLoadingState.Empty

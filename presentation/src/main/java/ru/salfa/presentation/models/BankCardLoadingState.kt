@@ -1,7 +1,7 @@
 package ru.salfa.presentation.models
 
-import ru.salfa.data.models.BankCard
-import ru.salfa.data.models.ResponseError
+import ru.salfa.domain.models.BankCard
+import ru.salfa.domain.models.ResponseError
 
 internal sealed class BankCardLoadingState {
     data object Empty : BankCardLoadingState()

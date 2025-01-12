@@ -15,7 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.koin.androidx.compose.koinViewModel
-import ru.salfa.data.models.ResponseError
+import ru.salfa.domain.models.ResponseError
 import ru.salfa.presentation.components.AppButton
 import ru.salfa.presentation.components.BinInfoCard
 import ru.salfa.presentation.components.BinInputField

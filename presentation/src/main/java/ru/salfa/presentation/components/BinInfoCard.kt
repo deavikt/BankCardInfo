@@ -13,6 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import ru.salfa.domain.models.BankCard
 import ru.salfa.presentation.R
 import ru.salfa.presentation.theme.BankCardInfoTheme
 import ru.salfa.presentation.theme.DisabledContainer
@@ -32,28 +33,28 @@ internal fun BinInfoCard(
             .padding(20.dp),
         verticalArrangement = Arrangement.spacedBy(4.dp)
     ) {
-        BankCardProperty(R.string.country_title, bankCard.country.name)
+        BankCardProperty(R.string.country_title, bankCard.countryName)
 
         BankCardProperty(
             propertyNameId = R.string.coordinates_title,
-            propertyText = "${bankCard.country.latitude}, ${bankCard.country.longitude}")
+            propertyText = "${bankCard.countryLatitude}, ${bankCard.countryLongitude}")
 
         BankCardProperty(
             propertyNameId = R.string.payment_system_type_title,
-            propertyText = bankCard.scheme.replaceFirstChar { char -> char.uppercase() }
+            propertyText = bankCard.paymentSystem.replaceFirstChar { char -> char.uppercase() }
         )
 
-        BankCardProperty(R.string.bank_title, bankCard.bank.name)
+        BankCardProperty(R.string.bank_title, bankCard.bankName)
 
-        bankCard.bank.url?.let { url ->
+        bankCard.bankUrl?.let { url ->
             BankCardProperty(R.string.url_title, url)
         }
 
-        bankCard.bank.phone?.let { phone ->
+        bankCard.bankPhone?.let { phone ->
             BankCardProperty(R.string.phone_title, phone)
         }
 
-        bankCard.bank.city?.let { city ->
+        bankCard.bankCity?.let { city ->
             BankCardProperty(R.string.city_title, city)
         }
     }
@@ -94,21 +95,15 @@ private fun BinInfoCardPreview() {
         BinInfoCard(
             modifier = Modifier.fillMaxWidth(),
             bankCard = BankCard(
-                number = BankCard.Number(
-                    length = 16
-                ),
-                scheme = "visa",
-                country = BankCard.Country(
-                    name = "Denmark",
-                    latitude = 56,
-                    longitude = 10
-                ),
-                bank = BankCard.Bank(
-                    name = "Jyske Bank",
-                    url = "www.jyskebank.dk",
-                    phone = "+4589893300",
-                    city = "Hjorring"
-                )
+                bin = "",
+                paymentSystem = "visa",
+                countryName = "Denmark",
+                countryLatitude = 56,
+                countryLongitude = 10,
+                bankName = "Jyske Bank",
+                bankUrl = "www.jyskebank.dk",
+                bankPhone = "+4589893300",
+                bankCity = "Hjorring"
             )
         )
     }

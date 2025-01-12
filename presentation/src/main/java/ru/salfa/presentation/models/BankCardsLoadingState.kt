@@ -1,8 +1,8 @@
 package ru.salfa.presentation.models
 
-import ru.salfa.data.local.BankCardEntity
+import ru.salfa.domain.models.BankCard
 
 internal sealed class BankCardsLoadingState {
     data object Empty : BankCardsLoadingState()
-    data class Success(val bankCards: List<BankCardEntity>) : BankCardsLoadingState()
+    data class Success(val bankCards: List<BankCard>) : BankCardsLoadingState()
 }
