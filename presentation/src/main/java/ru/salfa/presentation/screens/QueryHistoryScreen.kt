@@ -14,7 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.koin.androidx.compose.koinViewModel
-import ru.salfa.domain.models.BankCard
+import ru.salfa.domain.models.BankCardLocal
 import ru.salfa.presentation.components.BankCard
 import ru.salfa.presentation.components.DataLoadingStateText
 import ru.salfa.presentation.models.BankCardsLoadingState
@@ -53,7 +53,7 @@ internal fun QueryHistoryScreen(
 }
 
 @Composable
-private fun BankCardList(bankCards: List<BankCard>) {
+private fun BankCardList(bankCards: List<BankCardLocal>) {
     LazyColumn(
         modifier = Modifier.fillMaxSize()
     ) {

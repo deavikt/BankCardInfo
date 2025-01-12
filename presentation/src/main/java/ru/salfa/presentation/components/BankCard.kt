@@ -18,7 +18,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import ru.salfa.domain.models.BankCard
+import ru.salfa.domain.models.BankCardLocal
 import ru.salfa.presentation.R
 import ru.salfa.presentation.models.BIN
 import ru.salfa.presentation.theme.BankCardInfoTheme
@@ -28,7 +28,7 @@ import ru.salfa.presentation.theme.Typography
 @Composable
 internal fun BankCard(
     modifier: Modifier,
-    bankCard: BankCard
+    bankCard: BankCardLocal
 ) {
     val context = LocalContext.current
 
@@ -164,7 +164,7 @@ private fun BankCardPreview() {
     BankCardInfoTheme {
         BankCard(
             modifier = Modifier.fillMaxWidth(),
-            bankCard = BankCard(
+            bankCard = BankCardLocal(
                 bin = "45717360",
                 paymentSystem = "visa",
                 countryName = "Германия",

@@ -1,11 +1,12 @@
 package ru.salfa.presentation.mappers
 
-import ru.salfa.domain.models.BankCard
+import ru.salfa.domain.models.BankCardLocal
+import ru.salfa.domain.models.BankCardRemote
 
 internal class FromRemoteToLocalBankCardMapper {
-    fun map(bankCard: BankCard, bin: String): BankCard {
+    fun map(bankCard: BankCardRemote, bin: String): BankCardLocal {
         return with(bankCard) {
-            BankCard(
+            BankCardLocal(
                 bin = bin,
                 paymentSystem = paymentSystem,
                 countryName = countryName,

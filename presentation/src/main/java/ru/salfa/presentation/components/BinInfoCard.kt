@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import ru.salfa.domain.models.BankCard
+import ru.salfa.domain.models.BankCardRemote
 import ru.salfa.presentation.R
 import ru.salfa.presentation.theme.BankCardInfoTheme
 import ru.salfa.presentation.theme.DisabledContainer
@@ -22,7 +22,7 @@ import ru.salfa.presentation.theme.Typography
 @Composable
 internal fun BinInfoCard(
     modifier: Modifier,
-    bankCard: BankCard
+    bankCard: BankCardRemote
 ) {
     Column(
         modifier = modifier
@@ -94,8 +94,7 @@ private fun BinInfoCardPreview() {
     BankCardInfoTheme {
         BinInfoCard(
             modifier = Modifier.fillMaxWidth(),
-            bankCard = BankCard(
-                bin = "",
+            bankCard = BankCardRemote(
                 paymentSystem = "visa",
                 countryName = "Denmark",
                 countryLatitude = 56,

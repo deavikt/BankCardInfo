@@ -1,6 +1,6 @@
 package ru.salfa.domain.models
 
-data class BankCard(
+data class BankCardLocal(
     val bin: String,
     val paymentSystem: String,
     val countryName: String,

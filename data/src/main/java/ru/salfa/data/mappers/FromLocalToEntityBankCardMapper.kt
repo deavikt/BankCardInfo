@@ -1,13 +1,13 @@
 package ru.salfa.data.mappers
 
 import ru.salfa.data.local.BankCardEntity
-import ru.salfa.domain.models.BankCard
+import ru.salfa.domain.models.BankCardLocal
 
-internal class FromBankCardEntityToBankCardMapper {
+internal class FromLocalToEntityBankCardMapper : Mapper<BankCardLocal, BankCardEntity> {
 
-    fun map(bankCard: BankCardEntity): BankCard {
+    override fun map(bankCard: BankCardLocal): BankCardEntity {
         return with(bankCard) {
-            BankCard(
+            BankCardEntity(
                 bin = bin,
                 paymentSystem = paymentSystem,
                 countryName = countryName,
