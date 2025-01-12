@@ -7,13 +7,13 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import ru.salfa.data.models.ResponseResult
-import ru.salfa.data.repositories.BankCardRepository
+import ru.salfa.domain.models.ResponseResult
+import ru.salfa.domain.usecases.interfaces.GetBankCardUseCase
 import ru.salfa.presentation.models.BIN
 import ru.salfa.presentation.models.BankCardLoadingState
 
 internal class BankCardSearchViewModel(
-    private val bankCardRepository: BankCardRepository
+    private val getBankCardUseCase: GetBankCardUseCase
 ) : ViewModel() {
     private val binInputFieldState: TextFieldState = TextFieldState()
     private val searchButtonEnabledState: MutableStateFlow<Boolean> = MutableStateFlow(false)
@@ -25,7 +25,7 @@ internal class BankCardSearchViewModel(
         bankCardLoadingStateFlow.update { BankCardLoadingState.Loading }
 
         viewModelScope.launch {
-            bankCardRepository.getBankCardFlow(binInputFieldState.text.toString())
+            getBankCardUseCase(binInputFieldState.text.toString())
                 .collect { response ->
                     when (response) {
                         is ResponseResult.Success -> {
