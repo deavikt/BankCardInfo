@@ -9,11 +9,15 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import ru.salfa.domain.models.ResponseResult
 import ru.salfa.domain.usecases.interfaces.GetBankCardUseCase
+import ru.salfa.domain.usecases.interfaces.InsertBankCardUseCase
+import ru.salfa.presentation.mappers.FromRemoteToLocalBankCardMapper
 import ru.salfa.presentation.models.BIN
 import ru.salfa.presentation.models.BankCardLoadingState
 
 internal class BankCardSearchViewModel(
-    private val getBankCardUseCase: GetBankCardUseCase
+    private val getBankCardUseCase: GetBankCardUseCase,
+    private val insertBankCardUseCase: InsertBankCardUseCase,
+    private val fromRemoteToLocalBankCardMapper: FromRemoteToLocalBankCardMapper
 ) : ViewModel() {
     private val binInputFieldState: TextFieldState = TextFieldState()
     private val searchButtonEnabledState: MutableStateFlow<Boolean> = MutableStateFlow(false)
@@ -33,9 +37,11 @@ internal class BankCardSearchViewModel(
                                 BankCardLoadingState.Success(response.data)
                             }
 
-                            bankCardRepository.insertBankCardIntoDB(
-                                bankCard = response.data,
-                                bin = binInputFieldState.text.toString()
+                            insertBankCardUseCase(
+                                fromRemoteToLocalBankCardMapper.map(
+                                    bankCard = response.data,
+                                    bin = binInputFieldState.text.toString()
+                                )
                             )
                         }
                         is ResponseResult.Error -> {

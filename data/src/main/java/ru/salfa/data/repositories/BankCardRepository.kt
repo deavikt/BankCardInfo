@@ -49,7 +49,7 @@ internal class BankCardRepositoryImpl(
             }
     }
 
-    override suspend fun insertBankCardIntoDB(bankCard: BankCard) {
+    override suspend fun insertBankCard(bankCard: BankCard) {
         bankCardDao.insertBankCard(
             fromBankCardToBankCardEntityMapper.map(bankCard)
         )
