@@ -26,7 +26,7 @@ import ru.salfa.presentation.theme.DisabledContainer
 import ru.salfa.presentation.theme.Typography
 
 @Composable
-internal fun BankCard(
+internal fun LocalBankCard(
     modifier: Modifier,
     bankCard: BankCardLocal
 ) {
@@ -71,11 +71,13 @@ internal fun BankCard(
             propertyText = bankCard.paymentSystem.replaceFirstChar { char -> char.uppercase() }
         )
 
-        BankCardProperty(
-            modifier = Modifier,
-            propertyNameId = R.string.bank_title,
-            propertyText = bankCard.bankName
-        )
+        bankCard.bankName?.let { name ->
+            BankCardProperty(
+                modifier = Modifier,
+                propertyNameId = R.string.bank_title,
+                propertyText = name
+            )
+        }
 
         bankCard.bankUrl?.let { url ->
             BankCardProperty(
@@ -160,9 +162,9 @@ private fun openMap(
 
 @Preview
 @Composable
-private fun BankCardPreview() {
+private fun LocalBankCardPreview() {
     BankCardInfoTheme {
-        BankCard(
+        LocalBankCard(
             modifier = Modifier.fillMaxWidth(),
             bankCard = BankCardLocal(
                 bin = "45717360",

@@ -6,7 +6,7 @@ data class BankCardLocal(
     val countryName: String,
     val countryLatitude: Int,
     val countryLongitude: Int,
-    val bankName: String,
+    val bankName: String?,
     val bankUrl: String?,
     val bankPhone: String?,
     val bankCity: String?

@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.koin.androidx.compose.koinViewModel
 import ru.salfa.domain.models.BankCardLocal
-import ru.salfa.presentation.components.BankCard
+import ru.salfa.presentation.components.LocalBankCard
 import ru.salfa.presentation.components.DataLoadingStateText
 import ru.salfa.presentation.models.BankCardsLoadingState
 import ru.salfa.presentation.R
@@ -58,7 +58,7 @@ private fun BankCardList(bankCards: List<BankCardLocal>) {
         modifier = Modifier.fillMaxSize()
     ) {
         items(bankCards.size) { index ->
-            BankCard(
+            LocalBankCard(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(bottom = 10.dp),

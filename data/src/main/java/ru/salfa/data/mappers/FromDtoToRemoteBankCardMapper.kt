@@ -12,10 +12,10 @@ internal class FromDtoToRemoteBankCardMapper : Mapper<BankCardDto, BankCardRemot
                 countryName = country.name,
                 countryLatitude = country.latitude,
                 countryLongitude = country.longitude,
-                bankName = bank.name,
-                bankUrl = bank.url,
-                bankPhone = bank.phone,
-                bankCity = bank.city
+                bankName = bank?.name,
+                bankUrl = bank?.url,
+                bankPhone = bank?.phone,
+                bankCity = bank?.city
             )
         }
     }

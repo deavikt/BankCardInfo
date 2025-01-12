@@ -16,10 +16,11 @@ import ru.salfa.domain.repositories.BankCardRepository
 internal class BankCardRepositoryImpl(
     private val bankCardApi: BankCardApi,
     private val bankCardDao: BankCardDao,
-    private val fromBankCardDtoToBankCardMapper: FromDtoToRemoteBankCardMapper,
-    private val fromBankCardEntityToBankCardMapper: FromEntityToLocalBankCardMapper,
-    private val fromBankCardToBankCardEntityMapper: FromLocalToEntityBankCardMapper
+    private val fromDtoToRemoteBankCardMapper: FromDtoToRemoteBankCardMapper,
+    private val fromEntityToLocalBankCardMapper: FromEntityToLocalBankCardMapper,
+    private val fromLocalToEntityBankCardMapper: FromLocalToEntityBankCardMapper
 ) : BankCardRepository {
+
     override fun getBankCardFlow(bin: String): Flow<ResponseResult<BankCardRemote>> = flow {
         try {
             val response = bankCardApi.getBankCard(bin)
@@ -28,7 +29,7 @@ internal class BankCardRepositoryImpl(
             if (response.isSuccessful && responseBody != null && responseBody.number != null) {
                 emit(
                     ResponseResult.Success(
-                        fromBankCardDtoToBankCardMapper.map(responseBody)
+                        fromDtoToRemoteBankCardMapper.map(responseBody)
                     )
                 )
             } else {
@@ -44,7 +45,7 @@ internal class BankCardRepositoryImpl(
             .collect { bankCards ->
                 emit(
                     bankCards.map { bankCard ->
-                        fromBankCardEntityToBankCardMapper.map(bankCard)
+                        fromEntityToLocalBankCardMapper.map(bankCard)
                     }
                 )
             }
@@ -52,7 +53,7 @@ internal class BankCardRepositoryImpl(
 
     override suspend fun insertBankCard(bankCard: BankCardLocal) {
         bankCardDao.insertBankCard(
-            fromBankCardToBankCardEntityMapper.map(bankCard)
+            fromLocalToEntityBankCardMapper.map(bankCard)
         )
     }
 }

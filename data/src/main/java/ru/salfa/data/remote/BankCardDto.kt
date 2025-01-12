@@ -4,7 +4,7 @@ internal data class BankCardDto(
     val number: Number?,
     val scheme: String,
     val country: Country,
-    val bank: Bank
+    val bank: Bank?
 ) {
     data class Number(
         val length: Int

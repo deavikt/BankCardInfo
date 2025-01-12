@@ -17,7 +17,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.koin.androidx.compose.koinViewModel
 import ru.salfa.domain.models.ResponseError
 import ru.salfa.presentation.components.AppButton
-import ru.salfa.presentation.components.BinInfoCard
+import ru.salfa.presentation.components.RemoteBankCard
 import ru.salfa.presentation.components.BinInputField
 import ru.salfa.presentation.components.DataLoadingStateText
 import ru.salfa.presentation.components.ProgressBar
@@ -73,7 +73,7 @@ internal fun BankCardSearchScreen(
                 }
 
                 is BankCardLoadingState.Success -> {
-                    BinInfoCard(
+                    RemoteBankCard(
                         modifier = Modifier.fillMaxWidth(),
                         bankCard = (bankCardLoadingState as BankCardLoadingState.Success).bankCard
                     )

@@ -11,7 +11,7 @@ internal data class BankCardEntity(
     @ColumnInfo val countryName: String,
     @ColumnInfo val countryLatitude: Int,
     @ColumnInfo val countryLongitude: Int,
-    @ColumnInfo val bankName: String,
+    @ColumnInfo val bankName: String?,
     @ColumnInfo val bankUrl: String?,
     @ColumnInfo val bankPhone: String?,
     @ColumnInfo val bankCity: String?

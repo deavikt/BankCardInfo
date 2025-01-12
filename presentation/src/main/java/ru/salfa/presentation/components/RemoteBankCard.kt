@@ -1,6 +1,10 @@
 package ru.salfa.presentation.components
 
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -10,6 +14,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -20,10 +25,12 @@ import ru.salfa.presentation.theme.DisabledContainer
 import ru.salfa.presentation.theme.Typography
 
 @Composable
-internal fun BinInfoCard(
+internal fun RemoteBankCard(
     modifier: Modifier,
     bankCard: BankCardRemote
 ) {
+    val context = LocalContext.current
+
     Column(
         modifier = modifier
             .background(
@@ -33,39 +40,71 @@ internal fun BinInfoCard(
             .padding(20.dp),
         verticalArrangement = Arrangement.spacedBy(4.dp)
     ) {
-        BankCardProperty(R.string.country_title, bankCard.countryName)
+        BankCardProperty(
+            modifier = Modifier,
+            propertyNameId = R.string.country_title,
+            propertyText = bankCard.countryName
+        )
 
         BankCardProperty(
+            modifier = Modifier.clickable {
+                openMap(
+                    context = context,
+                    latitude = bankCard.countryLatitude,
+                    longitude = bankCard.countryLongitude
+                )
+            },
             propertyNameId = R.string.coordinates_title,
-            propertyText = "${bankCard.countryLatitude}, ${bankCard.countryLongitude}")
+            propertyText = "${bankCard.countryLatitude}, ${bankCard.countryLongitude}"
+        )
 
         BankCardProperty(
+            modifier = Modifier,
             propertyNameId = R.string.payment_system_type_title,
             propertyText = bankCard.paymentSystem.replaceFirstChar { char -> char.uppercase() }
         )
 
-        BankCardProperty(R.string.bank_title, bankCard.bankName)
+        bankCard.bankName?.let { name ->
+            BankCardProperty(
+                modifier = Modifier,
+                propertyNameId = R.string.bank_title,
+                propertyText = name
+            )
+        }
 
         bankCard.bankUrl?.let { url ->
-            BankCardProperty(R.string.url_title, url)
+            BankCardProperty(
+                modifier = Modifier,
+                propertyNameId = R.string.url_title,
+                propertyText = url
+            )
         }
 
         bankCard.bankPhone?.let { phone ->
-            BankCardProperty(R.string.phone_title, phone)
+            BankCardProperty(
+                modifier = Modifier,
+                propertyNameId = R.string.phone_title,
+                propertyText = phone
+            )
         }
 
         bankCard.bankCity?.let { city ->
-            BankCardProperty(R.string.city_title, city)
+            BankCardProperty(
+                modifier = Modifier,
+                propertyNameId = R.string.city_title,
+                propertyText = city
+            )
         }
     }
 }
 
 @Composable
 private fun BankCardProperty(
+    modifier: Modifier,
     propertyNameId: Int,
     propertyText: String
 ) {
-    Row {
+    Row(modifier = modifier) {
         BankCardPropertyName(stringResource(propertyNameId))
         BankCardPropertyText(propertyText)
     }
@@ -88,11 +127,24 @@ private fun BankCardPropertyText(propertyText: String) {
     )
 }
 
+private fun openMap(
+    context: Context,
+    latitude: Int,
+    longitude: Int
+) {
+    val intent = Intent(Intent.ACTION_VIEW).apply {
+        data = Uri.parse("geo:$latitude, $longitude")
+        flags = Intent.FLAG_ACTIVITY_NEW_TASK
+    }
+
+    context.applicationContext.startActivity(intent)
+}
+
 @Preview
 @Composable
-private fun BinInfoCardPreview() {
+private fun RemoteBankCardPreview() {
     BankCardInfoTheme {
-        BinInfoCard(
+        RemoteBankCard(
             modifier = Modifier.fillMaxWidth(),
             bankCard = BankCardRemote(
                 paymentSystem = "visa",
